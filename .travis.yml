@@ -1,3 +1,6 @@
+arch:
+  - amd64
+  - ppc64le
 before_install:
   - gem update --system -N
 rvm:
@@ -14,10 +17,28 @@ matrix:
       jdk: openjdk11
     - rvm: jruby-head
       jdk: openjdk11
+# ppc64le support code
+    - rvm: jruby-9.1.17.0
+      arch: ppc64le
+      jdk: openjdk8
+    - rvm: jruby-9.2.11.1
+      arch: ppc64le
+      jdk: openjdk11
+    - rvm: jruby-head
+      arch: ppc64le
+      jdk: openjdk11
+  
   allow_failures:
     - rvm: jruby-head
     - rvm: ruby-head
     - rvm: rbx-2
+    - rvm: jruby-head
+      arch: ppc64le
+    - rvm: ruby-head
+      arch: ppc64le
+    - rvm: rbx-2
+      arch: ppc64le
+
 env:
   global:
     JRUBY_OPTS: "--debug"
